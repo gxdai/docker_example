@@ -1,0 +1,21 @@
+# system info
+# Distributor ID:	Ubuntu
+# Description:	Ubuntu 16.04.5 LTS
+# Release:	16.04
+# Codename:	xenial
+
+FROM python:3.5 
+
+RUN apt-get -y update && apt-get -y upgrade
+RUN apt-get install -y wget vim
+
+RUN wget http://download.osgeo.org/gdal/2.3.2/gdal-2.3.2.tar.gz
+RUN tar -xvf gdal-2.3.2.tar.gz -C /
+RUN rm ./gdal-2.3.2.tar.gz
+RUN cd /gdal-2.3.2 && \
+    ./configure --with-python=yes && \
+    make all
+
+RUN cd /gdal-2.3.2  && \
+    make install && \
+    ldconfig
