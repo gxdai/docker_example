@@ -26,4 +26,5 @@ RUN apt-get install -y build-essential checkinstall cmake pkg-config yasm \
 
 RUN pip install --upgrade pip
 RUN pip install keras opencv-python scikit-image
-
+RUN rm /usr/bin/python
+RUN ln -s /usr/bin/python3 /usr/bin/python
