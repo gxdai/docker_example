@@ -5,9 +5,7 @@
 # Codename:	xenial
 
 FROM tensorflow/tensorflow:latest-gpu-py3
-RUN apt-get -y update && apt-get -y upgrade
-
-RUN apt-get install -y build-essential checkinstall cmake pkg-config yasm \
+RUN apt-get -y update && apt-get -y upgrade && apt-get install -y build-essential checkinstall cmake pkg-config yasm \
                        git gfortran \
                        libjpeg8-dev libjasper-dev libpng12-dev \
                        libtiff5-dev \
@@ -24,7 +22,7 @@ RUN apt-get install -y build-essential checkinstall cmake pkg-config yasm \
                        libgoogle-glog-dev libgflags-dev \
                        libgphoto2-dev libeigen3-dev libhdf5-dev doxygen
 
-RUN pip install --upgrade pip
-RUN pip install keras opencv-python scikit-image
-RUN rm /usr/bin/python
-RUN ln -s /usr/bin/python3 /usr/bin/python
+RUN pip install --upgrade pip \
+    &&  pip install keras opencv-python scikit-image \
+    && rm /usr/bin/python \
+    && ln -s /usr/bin/python3 /usr/bin/python
